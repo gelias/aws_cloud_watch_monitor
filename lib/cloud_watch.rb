@@ -17,6 +17,3 @@ module CloudWatch
 
   end
 end 
-
-umov_me_alarms = CloudWatch::Alarm.new 'AKIAJHLQSOW6PHFQ6MFA', 'Ws2bAjooigvBTSqWjtd1iBMxMHzSp1HAaFJMAPSb'
-umov_me_alarms.list
