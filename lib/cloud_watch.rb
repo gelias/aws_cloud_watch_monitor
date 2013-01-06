@@ -5,13 +5,13 @@ require 'security'
 
 module CloudWatch
 
-  class Alarm < Security::Credential
+  class Alarm
 
   	attr_accessor :cw
 
     def initialize
-      super
-      @cw = AWS::CloudWatch.new(:access_key_id => access_key,:secret_access_key => secret_access)
+      credentials = Security.credentials
+      @cw = AWS::CloudWatch.new(:access_key_id => credentials["access_key"],:secret_access_key => credentials["secret_access"])
     end
 
     def list

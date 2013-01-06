@@ -6,7 +6,7 @@ module EC2
 
   class Instance
 
-    def initialize access_key, secret_key
+    def initialize
       credentials = Security.credentials
       AWS.config(:access_key_id => credentials["access_key"],:secret_access_key => credentials["secret_access"])
       @instance = AWS::EC2::Instance.new('i-33ae7942')
