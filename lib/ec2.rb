@@ -6,26 +6,30 @@ module EC2
 
   class Instance
 
-    def initialize
+    attr_accessor :vm
+
+    def initialize instance_id
       credentials = Security.credentials
       AWS.config(:access_key_id => credentials["access_key"],:secret_access_key => credentials["secret_access"])
-      @instance = AWS::EC2::Instance.new('i-33ae7942')
+      @vm = AWS::EC2::Instance.new(instance_id)
     end
 
     def start
       begin
-        @instance.start
+        @vm.start
         true
-      rescue
+      rescue Exception => e
+        puts "Could not start instance: #{e.message}"
         false
         end
     end
 
     def stop
       begin
-        @instance.stop
+        @vm.stop
         true
-      rescue
+      rescue Exception => e
+        puts "Could not stop instance: #{e.message}"
         false
       end
     end
