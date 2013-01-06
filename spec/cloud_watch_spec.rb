@@ -3,23 +3,23 @@ require 'rspec'
 require '../lib/cloud_watch'
 
 describe "Alarm" do
-  it "Should retrieve all alarms" do
-    alarm  = CloudWatch::Alarm.new 'access_key', 'secret_key'
-    alarms = alarm.list
-    alarms.length.should > 0
+  
+  it "Should create a new CloudWatch instance with credentials" do
+    alarm  = CloudWatch::Alarm.new
+    alarm.access_key.should_not be_nil
+    alarm.secret_access.should_not be_nil
   end
+
+  it "Should retrieve all alarms" do
+  	#stub aws call
+    client = double("client")
+    client.stub(:describe_alarms => {:metric_alarms=>[{:name=>"valor",:valor=>"valuesss"}]} )
+    cloud_watch = double("cw")
+    cloud_watch.stub(:client => client)
+    
+    alarm  = CloudWatch::Alarm.new
+    alarm.cw = cloud_watch
+    alarm.list.length.should eq(1)
+  end
+
 end
-
-describe "EC2" do
-	it "Should stop ec2 instance" do
-		instance  = EC2::Instance.new 'access_key', 'secret_key'
-		instance.stop
-	end
-
-	it "Should stop ec2 instance" do
-		instance  = EC2::Instance.new 'access_key', 'secret_key'
-		instance.start
-	end
-
-end
-
