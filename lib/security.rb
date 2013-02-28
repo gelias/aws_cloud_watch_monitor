@@ -12,5 +12,9 @@ module Security
       end
       config
   end
+
+  def self.instances
+	  credentials["instances"]
+  end
   
 end
