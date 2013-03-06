@@ -1,13 +1,13 @@
 require 'rubygems'
 require 'aws-sdk'
 require 'security'
+require 'instance_factory'
 
 module EC2 
 
   class Instance
 
     attr_accessor :vm, :ec2
-
 
     def initialize(instance_id = '', instance_factory = nil)
       credentials = Security.credentials
@@ -28,7 +28,7 @@ module EC2
     end
 
     def start_all
-      Security.instances.each do |instance_id|
+      Security.instances_to_start.each do |instance_id|
         @instance_id = instance_id
         start
       end
@@ -36,7 +36,7 @@ module EC2
     end
 
     def stop_all
-      Security.instances.each do |instance_id|
+      Security.instances_to_stop.each do |instance_id|
         @instance_id = instance_id
         stop
       end

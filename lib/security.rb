@@ -13,8 +13,12 @@ module Security
       config
   end
 
-  def self.instances
-	  credentials["instances"]
+  def self.instances_to_start
+	  credentials["instances_to_start"]
+  end
+
+  def self.instances_to_stop
+    credentials["instances_to_stop"]
   end
   
 end

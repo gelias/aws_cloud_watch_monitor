@@ -1,0 +1,4 @@
+	task :test do
+	    cd spec
+	    rspec *.rb
+	end
