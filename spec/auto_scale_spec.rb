@@ -1,7 +1,4 @@
-require 'rubygems'
-require 'rspec'
-require '../lib/ec2'
-require '../lib/aws_factory'
+require 'spec_helper'
 
 describe 'Auto Scale' do 
 
@@ -29,10 +26,10 @@ describe 'Auto Scale' do
   	@as_groupCollection.stub(:create).and_return(@as_group)
   	@as_group.stub(:max_size).and_return(2)
   	@as_group.stub(:min_size).and_return(1)
-  	auto_scale = EC2::Scaling.new(AWSFactory::Scaling.new)
+  	auto_scale = EC2::Scaling.new(@as_factory)
   	auto_scale.add_group('group_name','us-east-1a', 'elb_name', 1, 2).should be_true
   	auto_scale.group.max_size == 2
   	auto_scale.group.min_size == 1
-  end 
+  end
 
 end

@@ -1,6 +1,5 @@
-require 'rubygems'
-require 'rspec'
-require '../lib/cloud_watch'
+
+require 'spec_helper'
 
 describe "Alarm" do
   

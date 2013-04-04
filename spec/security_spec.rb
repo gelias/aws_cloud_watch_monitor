@@ -1,6 +1,4 @@
-require 'rubygems'
-require 'rspec'
-require '../lib/security'
+require 'spec_helper'
 
 describe "EC2" do
 

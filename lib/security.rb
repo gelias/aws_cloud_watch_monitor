@@ -6,7 +6,8 @@ module Security
   
   def self.credentials
     config = begin
-        YAML.load(File.open("../config.yml"))
+        YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))
+        #YAML.load(File.open("../config.yml"))
       rescue Exception => e
         puts  "Could not load config: #{e.message}"
       end
